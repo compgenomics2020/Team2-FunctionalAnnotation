@@ -1,3 +1,9 @@
 # Functional Annotation Tools 
-* Step 1: UClust for clustering based on sequence similarity
-* Step 2: dtemples3 changes 
+
+## Intuition
+We will be dividing functional annotation tools into clustering, homology-based, and ab
+initio-based tools.
+
+## TODO
+1. Finalize/Add tools for groups defined in "Grouping Software"
+2. Start looking at the tools for clustering
