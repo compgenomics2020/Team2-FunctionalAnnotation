@@ -1,5 +1,6 @@
 # Functional Annotation Tools 
 
+
 ## Intuition
 We will be dividing functional annotation tools into clustering, homology-based, and ab
 initio-based tools.
@@ -29,3 +30,4 @@ initio-based tools.
 1. A comparison of methods for clustering 16s rrna sequences into otus 
 2. SpCLUST: Towards a fast and reliable clustering for potentially divergent biological sequences 
 3. Open-Source Sequence Clustering Methods Improve the State Of the Art
+
