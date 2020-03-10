@@ -2,32 +2,51 @@
 
 
 ## Intuition
-We will be dividing functional annotation tools into clustering, homology-based, and ab
-initio-based tools.
+We will be dividing functional annotation tools into clustering, homology-based and ab-initio-based tools.
 
-## TODO
-1. Finalize/Add tools for groups defined in "Grouping Software"
-2. Start looking at the tools for clustering (limit to 3)
-3. Pick tools for cluster
-   - CD-HIT (2019)
-     - word counting instead of pairwise sequence alignments
-     - https://github.com/weizhongli/cdhit
-   - SpCLUST 
-     - no prior knowledge about input seqs, better at divergent sequences
-     - https://github.com/johnymatar/SpCLUST
-   - SUMACLUST 
-     - pairwise similarities, sort by abundance, clusters similar to CD-HIT
-     - reported significantly fewer OTUs and lower alpha diversities than UCLUST (ref 3)
-     - https://git.metabarcoding.org/obitools/sumaclust/wikis/home
-   - TreeCluster 
-     - generates more consistent clusters, improves effectiveness of downstream applications
-     - https://github.com/niemasd/TreeCluster
-   - UCLUST (2019)
-     - threshold similarity score determines cluster membership
-     - https://www.drive5.com/usearch/download_academic_site.html
+## Pipeline
+We will be analyzing our DNA and protein sequences (in faa, fna, and gff files) using homology and ab-initio based techniques. We will be narrowing down the following categories to one tool based on efficiency and performance.e
+### Clustering
+- UCLUST
+- CD-HIT
+- LinClust
+- MeShClust
+### Homology
+- Antibiotic Resistance
+  - CARD
+  - ResFinder
+- Prophage
+  - ProphET
+  - PHASTER
+- Virulence
+  - VFDB
+  - T3DB
+- Operons
+  - OperonDB
+  - ODB
+- Fully Automated Functional Annotation
+  - PANZZER2
+  - BLAST
+- Plasmids
+  - PlasmidSeeker
+### Ab-initio
+- Plasmids
+  - PlasFlow
+- Outer Membrane Protein
+  - TBB-Prod
+- Trans Membrane Protein
+  - HMMTOP2
+  - TMHMM2
+- Signal Peptide
+  - SignalP
+  - tatP
+  - Phobius
+  - LipoP
+- CRSIPR
+  - PilerCR
+  - CRT
 
-## References
-1. A comparison of methods for clustering 16s rrna sequences into otus 
-2. SpCLUST: Towards a fast and reliable clustering for potentially divergent biological sequences 
-3. Open-Source Sequence Clustering Methods Improve the State Of the Art
-
+## Goals
+1. We need to be able to get good predictions for Functional Annotation to pass on to the Comparative Genomics group.
+2. We need to quantify the performance of each tool based on more than just a simple histogram.
+3. We need to finish the presentation before Spring break.
