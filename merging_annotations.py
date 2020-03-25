@@ -88,18 +88,13 @@ def tmhmm_merger(input_directory_path,tmhmm_file,output_directory_path_gff,outpu
 			pred_hel_split=col[4].split("=")
 			pred_hel=pred_hel_split[1]
 			top=col[5]
-			if int(pred_hel)!=0:
+			if int(pred_hel)!=0:	#Rejecting the proteins with zero predicted alpha-helices
 				dict_faa[header]= "Transmembrane Protein: Predicted Helices="+pred_hel+", Topology:"+top
-				
-
-	with open("TMHMM_results.csv","a+") as re:
-		re.write(input_file+","+str(len(dict_faa))+"\n")			
-
-
+			
 	#Writing to .faa output files
 	with open(output_file_faa,"r") as op:
 		faa=op.readlines()
-	command="rm "+output_file_faa
+	command="rm "+output_file_faa	#removing the original .faa file
 	os.system(command)
 	line_count=0
 	while(line_count<len(faa)):
