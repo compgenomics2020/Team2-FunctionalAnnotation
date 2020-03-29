@@ -19,11 +19,15 @@ for na in ['n','a']:
 
     with open('./output/cdhit/f'+na+'a_cluster_membership.txt','r') as clstr:
         c_lines = clstr.readlines()
+        w_lines = []
 
         for ind in range(len(c_lines)):
             c_line = c_lines[ind].split()
             if c_line[0] != '>Cluster':
-                c_lines[ind] = matching[c_line[2]]+'\n'
+                if c_line[-1] == '*':
+                    w_lines.append(matching[c_line[2]]+'\n')
+            else:
+                w_lines.append(' '.join(c_line) + '\n')
 
     with open('./output/cdhit/f'+na+'a_cluster_membership.txt','w') as clstr:
-        clstr.writelines(c_lines)
+        clstr.writelines(w_lines)
