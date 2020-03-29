@@ -8,7 +8,7 @@ Script for creating .gff files from homology results
 import subprocess,os,sys
 
 '''
-This function reads in the VFDB results
+Function reads in the VFDB results
 
 '''
 def vfdb(input_file_path):
@@ -26,7 +26,7 @@ def vfdb(input_file_path):
 	return(vfdic)
 
 '''
-This function reads in the CARD results
+Function reads in the CARD results
 '''
 def card(input_file_path):
 	
@@ -46,10 +46,53 @@ def card(input_file_path):
 			if node[0] not in cardic.keys():
 				cardic[node[0]]=[antbio,mech,amr_gene_family]
 	return cardic
+
+
+'''
+Function reads in the Eggnog results
+
+'''
+def eggnog(input_file_path):
+	
+	eggdic={}
+	
+	#Parsing the Eggnog results:
+	with open(input_file_path,"r") as eggin:
+		for line in eggin:
+			if line.startswith("#")==False:
+				line=line.rstrip()
+				col=line.split("\t")
+				node=col[0]
+				function=col[-1]
+				if node not in eggdic.keys():
+					eggdic[node]=[function]
+	return eggdic
+				 
+'''
+Function reads in the Operon results
+'''
+def operon(input_file_path):
+	
+	operondic={}
+
+	#Parsing Operon results:
+	with open(input_file_path,"r") as opin:
+		for line in opin:
+			col=line.split("\t")
+			node=col[0]
+			function="Operon member"
+			if node not in operondic.keys():
+				operondic[node]=[function]
+	return operondic
+
+
+
+
+
 '''
 This function relates homology results to their clusters
 '''
-def cluster(cluster_input,dictionary,retype):
+def cluster(cluster_input):
 	
 	#Reading the centroids of each cluster
 	centroid=[]
@@ -72,7 +115,13 @@ def cluster(cluster_input,dictionary,retype):
 						text=node.split("...")
 						clustdic[centroid[-1]].append(clust[line])
 					line=line+1
+	return clustdic
 
+'''
+This function creates gff files for each output
+
+'''
+def gff(clustdic,dictionary,retype):
 	for key in dictionary.keys():
 		if key in clustdic.keys():
 			mem=clustdic[key]
@@ -95,13 +144,26 @@ def cluster(cluster_input,dictionary,retype):
 def main():
 	vfdb_input=sys.argv[1]
 	card_input=sys.argv[2]
-	cluster_input=sys.argv[3]
+	eggnog_input=sys.argv[3]
+	operon_input=sys.argv[4]
+	cluster_input=sys.argv[5]
+	
 	vf_name="vf"
 	card_name="card"
+	eggnog_name="eg"
+	operon_name="op"
+	
 	vfdic=vfdb(vfdb_input)
-	cluster(cluster_input,vfdic,vf_name)
+	clustdic=cluster(cluster_input)
 	cardic=card(card_input)
-	cluster(cluster_input,cardic,card_name)
+	eggdic=eggnog(eggnog_input)
+	operondic=operon(operon_input)
+	
+	gff(clustdic,vfdic,vf_name)
+	gff(clustdic,cardic,card_name)
+	gff(clustdic,eggdic,eggnog_name)
+	gff(clustdic,operondic,operon_name)
+	
 if __name__ == "__main__":
 	main()
 
