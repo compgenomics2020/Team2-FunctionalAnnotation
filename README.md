@@ -19,7 +19,7 @@ We will be analyzing our DNA and protein sequences (in faa, fna, and gff files) 
 	rgi tab -i <path to output_file_name.json>
 ### Virulence: VFDB
 	makeblastdb -in VFDB_db -dbtype 'nucl' -out <db_name>
-	blastn -db <db_name> -query <cluster> -out <result> -max_hsps 1 -max_target_seqs 1 -outfmt 6 -perc_identity 100 -num_threads 5
+	blastn -db <db_name> -query <cluster> -out <result> -max_hsps 1 -max_target_seqs 1 -outfmt "6 qseqid length qstart qend sstart send evalue bitscore stitle" -perc_identity 100 -num_threads 5
 ### Operons: MicrobesOnline
 	makeblastdb -in <fasta file > -dbtype prot -out <database>
 	blastp -query cdhit/faa_rep_seq.faa -db tmp/db_operon -evalue 0.01 -max_target_seqs 1 -max_hsps 1 -outfmt 6 -out tmp/hits_0.01.txt -num_threads 5
