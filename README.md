@@ -8,7 +8,7 @@ We will be dividing functional annotation tools into clustering, homology-based 
 ## Pipeline
 We will be analyzing our DNA and protein sequences (in faa, fna, and gff files) using homology and ab-initio based techniques. We will be narrowing down the following categories to one tool based on efficiency and performance.e
 ### Clustering
-* Clustering Sequences: CDHit 
+#### Clustering Sequences: CDHit 
 	./cd-hit -i <input_file> -o <output_file_name>
 ### Homology
 * Antibiotic Resistance: CARD
