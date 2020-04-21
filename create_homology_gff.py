@@ -145,9 +145,9 @@ def main():
 	vfdb_input=sys.argv[1]
 	card_input=sys.argv[2]
 	eggnog_input=sys.argv[3]
-	operon_input=sys.argv[4]
-	cluster_input=sys.argv[5]
-	cluster_membership=sys.argv[6]
+#	operon_input=sys.argv[4]
+	cluster_input=sys.argv[4]
+	cluster_membership=sys.argv[5]
 	
 	vf_name="vf"
 	card_name="card"
@@ -173,13 +173,13 @@ def main():
 	clustdic=cluster(Clust2)
 	cardic=card(card_input)
 	eggdic=eggnog(eggnog_input)
-	operondic=operon(operon_input)
+	#operondic=operon(operon_input)
 	
 	#Creating gffs
 	gff(clustdic,vfdic,vf_name)
 	gff(clustdic,cardic,card_name)
 	gff(clustdic,eggdic,eggnog_name)
-	gff(clustdic,operondic,operon_name)
+	#gff(clustdic,operondic,operon_name)
 	
 if __name__ == "__main__":
 	main()
