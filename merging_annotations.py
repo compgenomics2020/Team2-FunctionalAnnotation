@@ -105,7 +105,7 @@ def merge_gff(input_directory_path,output_directory_path):
 						sample_dict[eg_key]=[eg_def]
 					else:
 						sample_dict[eg_key].append(eg_def)
-
+		'''
 		#Reading Operon results
 		sample_op=input_directory_path+"/"+sample+"_union_op.gff"
 		if os.path.isfile(sample_op)==True:
@@ -119,7 +119,8 @@ def merge_gff(input_directory_path,output_directory_path):
 						sample_dict[op_key]=[op_def]
 					else:
 						sample_dict[op_key].append(op_def)
-
+		'''
+		
 		#Writing final merged .gff
 		output_file=output_directory_path+"/"+sample+".gff"
 		for keys in sample_dict.keys():
