@@ -147,18 +147,35 @@ def main():
 	eggnog_input=sys.argv[3]
 	operon_input=sys.argv[4]
 	cluster_input=sys.argv[5]
+	cluster_membership=sys.argv[6]
 	
 	vf_name="vf"
 	card_name="card"
 	eggnog_name="eg"
 	operon_name="op"
-	
+
+	#Merging the cluster files
+	paste_com="paste "+cluster_membership+" "+cluster_input+" > Clust1"
+	os.system(paste_com)
+	awk_com="cat Clust1 | cut -d'\t' -f1,3 > Clust2"
+	os.system(awk_com)
+	rm_com="rm Clust1"
+	os.system(rm_com)
+	sed1_com="sed -i 's/>//g' Clust2"
+	os.system(sed1_com)
+	sed2_com="sed -i 's/Cluster //g' Clust2"
+	os.system(sed2_com)
+	sed3_com="sed -i -E 's/\s+[0-9]+[a]{2},\s+/\//g' Clust2"
+	os.system(sed3_com)
+
+	#Parsing the outputs	
 	vfdic=vfdb(vfdb_input)
-	clustdic=cluster(cluster_input)
+	clustdic=cluster(Clust2)
 	cardic=card(card_input)
 	eggdic=eggnog(eggnog_input)
 	operondic=operon(operon_input)
 	
+	#Creating gffs
 	gff(clustdic,vfdic,vf_name)
 	gff(clustdic,cardic,card_name)
 	gff(clustdic,eggdic,eggnog_name)
