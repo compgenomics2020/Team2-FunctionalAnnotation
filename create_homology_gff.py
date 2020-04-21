@@ -1,5 +1,5 @@
 '''
-Script for creating .gff files from homology results
+Script for creating .gff files from homology results incorporating the clustering data
 
 '''
 
